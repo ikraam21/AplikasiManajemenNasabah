@@ -199,6 +199,7 @@ public class TableRowSelection extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnlJudul.setBackground(new java.awt.Color(0, 204, 204));
         pnlJudul.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         txtJudul.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -221,6 +222,9 @@ public class TableRowSelection extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        pnlUtama.setBackground(new java.awt.Color(0, 204, 204));
+
+        panelTabel.setBackground(new java.awt.Color(0, 204, 204));
         panelTabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Nasabah"));
 
         btnFilter.setText("Filter");
@@ -277,6 +281,7 @@ public class TableRowSelection extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        pnlInputDetail.setBackground(new java.awt.Color(0, 204, 204));
         pnlInputDetail.setBorder(javax.swing.BorderFactory.createTitledBorder("Input Detail"));
 
         jLabel1.setText("Nama : ");
@@ -433,6 +438,7 @@ public class TableRowSelection extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        pnlDetaiKredit.setBackground(new java.awt.Color(0, 204, 204));
         pnlDetaiKredit.setBorder(javax.swing.BorderFactory.createTitledBorder("Detail Kredit"));
 
         jLabel13.setText("Nama Barang :");
