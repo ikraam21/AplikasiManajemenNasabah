@@ -1,0 +1,3 @@
+nama, jenisKelamin, statusPernikahan, umur, noIdentitas, pekerjaan, alamat, noTelepon, jmlTanggungan, gajiPokok, penghasilanTambahan
+
+idCicilan, namaBarang, hargaBarang, uangMuka, lamaKredit
