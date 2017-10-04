@@ -16,9 +16,12 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -143,9 +146,9 @@ public class TableRowSelection extends javax.swing.JFrame {
         pnlUtama = new javax.swing.JPanel();
         panelTabel = new javax.swing.JPanel();
         txtFilter = new javax.swing.JTextField();
-        btnFilter = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelPerson = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
         pnlInputDetail = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -227,10 +230,9 @@ public class TableRowSelection extends javax.swing.JFrame {
         panelTabel.setBackground(new java.awt.Color(0, 204, 204));
         panelTabel.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Nasabah"));
 
-        btnFilter.setText("Filter");
-        btnFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilterActionPerformed(evt);
+        txtFilter.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtFilterCaretUpdate(evt);
             }
         });
 
@@ -252,6 +254,8 @@ public class TableRowSelection extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabelPerson);
 
+        jLabel21.setText("Filter :");
+
         javax.swing.GroupLayout panelTabelLayout = new javax.swing.GroupLayout(panelTabel);
         panelTabel.setLayout(panelTabelLayout);
         panelTabelLayout.setHorizontalGroup(
@@ -260,13 +264,10 @@ public class TableRowSelection extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelTabelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFilter))
-                    .addGroup(panelTabelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel21)
+                        .addGap(42, 42, 42)
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTabelLayout.setVerticalGroup(
@@ -275,7 +276,7 @@ public class TableRowSelection extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFilter))
+                    .addComponent(jLabel21))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -611,23 +612,6 @@ public class TableRowSelection extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        //        try {
-            //            List<Person> data = getDataPerson("C:/Users/user/Documents/NetBeansProjects/AplikasiManajemenNasabah/datanasabah.txt");
-            //            DefaultTableModel tModel = (DefaultTableModel) tabelPerson.getModel();
-            //            for (Person person : data) {
-                //                Vector row = new Vector();
-                //                row.add(person.getName());
-                //                row.add(person.getGender());
-                //                row.add(person.getMaried());
-                //                row.add(person.getAge());
-                //                tModel.addRow(row);
-                //            }
-            //        } catch (IOException ex) {
-            //            Logger.getLogger(TableRowSelection.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
-    }//GEN-LAST:event_btnFilterActionPerformed
-
     private void txtNamaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaBarangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaBarangActionPerformed
@@ -656,6 +640,13 @@ public class TableRowSelection extends javax.swing.JFrame {
         txtStatusCicilan.setText("Disetujui");
         
     }//GEN-LAST:event_cmbHitungActionPerformed
+
+    private void txtFilterCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFilterCaretUpdate
+        // TODO add your handling code here:
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(((DefaultTableModel) tabelPerson.getModel()));
+        sorter.setRowFilter(RowFilter.regexFilter(txtFilter.getText()));
+        tabelPerson.setRowSorter(sorter);
+    }//GEN-LAST:event_txtFilterCaretUpdate
 
 
     /**
@@ -699,7 +690,6 @@ public class TableRowSelection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFilter;
     private javax.swing.JCheckBox chkStatusPernikahan;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JButton cmbHitung;
@@ -716,6 +706,7 @@ public class TableRowSelection extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
